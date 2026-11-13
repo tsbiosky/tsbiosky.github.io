@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Junxuan Huang</title>
+<meta name="description" content="Junxuan Huang — AI/ML researcher and engineer. Publications, experience and education.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: sticky identity column on the left, a single reading column of
+   publications → experience → education on the right. Stacks on phones. */
+:root {
+  --bg: #f6f7f9;
+  --surface: #ffffff;
+  --ink: #161a21;
+  --muted: #5d6573;
+  --line: #e2e5ea;
+  --accent: #0f6e6a;      /* street-sign teal */
+  --accent-soft: #e3f1ef;
+  --gold: #a86a12;        /* lamplight */
+  --gold-soft: #f8eedc;
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1216;
+    --surface: #161a20;
+    --ink: #e8eaee;
+    --muted: #9aa2ae;
+    --line: #262c35;
+    --accent: #5cc2b8;
+    --accent-soft: #12302e;
+    --gold: #e0a84a;
+    --gold-soft: #2e2416;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1216;
+  --surface: #161a20;
+  --ink: #e8eaee;
+  --muted: #9aa2ae;
+  --line: #262c35;
+  --accent: #5cc2b8;
+  --accent-soft: #12302e;
+  --gold: #e0a84a;
+  --gold-soft: #2e2416;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px 24px 72px;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 64px;
+}
+
+/* ---------- identity column ---------- */
+.side { position: sticky; top: 40px; align-self: start; display: flex; flex-direction: column; gap: 20px; }
+.side-top { display: flex; flex-direction: column; gap: 18px; }
+.portrait {
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--line);
+  box-shadow: 0 1px 0 var(--line), 0 18px 40px -24px rgba(0,0,0,.45);
+}
+.portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 40%; display: block; }
+.name {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 4px 0 0;
+  text-wrap: balance;
+}
+.role { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.5; }
+.role strong { color: var(--ink); font-weight: 500; }
+.loc { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 14px; }
+.loc svg { width: 15px; height: 15px; flex: none; }
+
+.links { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.links a {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 14px;
+  transition: border-color .15s, transform .15s;
+}
+.links a:hover { border-color: var(--accent); text-decoration: none; transform: translateX(2px); }
+.links svg { width: 18px; height: 18px; flex: none; color: var(--muted); }
+.links a:hover svg { color: var(--accent); }
+.links .handle { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+/* ---------- main column ---------- */
+main { display: flex; flex-direction: column; gap: 56px; min-width: 0; }
+.intro p { margin: 0; font-family: var(--font-display); font-size: 22px; line-height: 1.5; max-width: 34em; }
+.intro p + p { margin-top: 14px; font-family: var(--font-body); font-size: 16px; color: var(--muted); max-width: 40em; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.tag { font-size: 13px; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+
+.sec-head { display: flex; align-items: baseline; gap: 12px; margin: 0 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.sec-head h2 { font-family: var(--font-display); font-weight: 500; font-size: 28px; margin: 0; letter-spacing: -0.005em; }
+.sec-head .count { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+/* publications */
+.pubs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.pub {
+  display: grid;
+  grid-template-columns: 124px minmax(0, 1fr);
+  gap: 20px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.venue { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.venue .v {
+  font-family: var(--font-mono); font-weight: 500; font-size: 12.5px;
+  padding: 3px 8px; border-radius: 6px;
+  background: var(--accent-soft); color: var(--accent);
+  white-space: nowrap;
+}
+.venue .oral { font-family: var(--font-mono); font-size: 11.5px; padding: 2px 8px; border-radius: 6px; background: var(--gold-soft); color: var(--gold); }
+.pub h3 { margin: 0 0 6px; font-size: 17px; font-weight: 600; line-height: 1.4; text-wrap: balance; }
+.pub h3 a { color: var(--ink); }
+.pub h3 a:hover { color: var(--accent); }
+.authors { margin: 0; font-size: 14px; color: var(--muted); line-height: 1.55; }
+.authors .me { color: var(--ink); font-weight: 600; text-decoration: underline; text-decoration-color: var(--gold); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+.pub-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.pub-links a {
+  font-family: var(--font-mono); font-size: 12px;
+  padding: 3px 10px; border-radius: 6px;
+  border: 1px solid var(--line); color: var(--ink);
+}
+.pub-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+/* timeline */
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; }
+.timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--line); }
+.item { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 24px; padding: 0 0 26px 30px; }
+.item:last-child { padding-bottom: 0; }
+.item::before {
+  content: ""; position: absolute; left: 0; top: 7px;
+  width: 11px; height: 11px; border-radius: 50%;
+  background: var(--bg); border: 2px solid var(--muted);
+}
+.item.now::before { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.item .org { font-weight: 600; font-size: 17px; }
+.item .title { grid-column: 1; color: var(--ink); font-size: 15px; }
+.item .meta { grid-column: 1; color: var(--muted); font-size: 14px; }
+.item .when { grid-column: 2; grid-row: 1; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; padding-top: 3px; }
+.badge-now { font-family: var(--font-mono); font-size: 11px; color: var(--accent); margin-left: 8px; letter-spacing: .04em; }
+
+footer { color: var(--muted); font-size: 13px; padding-top: 24px; border-top: 1px solid var(--line); }
+
+@media (max-width: 880px) {
+  .wrap { grid-template-columns: 1fr; gap: 40px; padding-top: 32px; }
+  .side { position: static; }
+  .side-top { flex-direction: row; gap: 20px; align-items: center; }
+  .portrait { max-width: 128px; border-radius: 16px; flex: none; }
+  .name { font-size: 34px; }
+  .links { flex-direction: row; flex-wrap: wrap; }
+  .links a { flex: 1 1 160px; }
+}
+@media (max-width: 520px) {
+  .wrap { padding: 24px 16px 56px; }
+  .side-top { flex-direction: column; align-items: flex-start; }
+  .pub { grid-template-columns: 1fr; gap: 10px; padding: 16px; }
+  .venue { flex-direction: row; flex-wrap: wrap; }
+  .item { grid-template-columns: 1fr; }
+  .item .when { grid-column: 1; grid-row: auto; padding-top: 0; }
+  .intro p { font-size: 19px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <aside class="side">
+    <div class="side-top">
+      <div class="portrait"><img src="portrait.jpg" alt="Portrait of Junxuan Huang"></div>
+      <div>
+        <h1 class="name">Junxuan Huang</h1>
+        <p class="role"><strong>Software Engineer, AI/ML</strong> at Google<br>Ph.D. in Computer Science, University at Buffalo</p>
+      </div>
+    </div>
+    <div class="loc">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+      New York, NY
+    </div>
+    <nav class="links" aria-label="Profiles">
+      <a href="https://scholar.google.com/citations?user=wx0wm6oAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 1 9.5l4 2.7V17c0 .3.1.5.3.7C7 19.2 9.4 20 12 20s5-.8 6.7-2.3c.2-.2.3-.4.3-.7v-4.8l2-1.4V16h2V9.5L12 2zm5 14.5c-1.4 1.1-3.1 1.5-5 1.5s-3.6-.4-5-1.5v-3l5 3.4 5-3.4v3zm-5-2.3L4.6 9.5 12 4.4l7.4 5.1L12 14.2z"/></svg>
+        Google Scholar <span class="handle">Profile</span>
+      </a>
+      <a href="https://github.com/tsbiosky" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>
+        GitHub <span class="handle">tsbiosky</span>
+      </a>
+      <a href="https://www.linkedin.com/in/junxuan-huang" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+        LinkedIn <span class="handle">junxuan-huang</span>
+      </a>
+      <a href="https://x.com/Juruuax" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78L17.75 3zm-1.08 16.17h1.7L7.4 4.74H5.58l11.09 14.43z"/></svg>
+        X <span class="handle">@Juruuax</span>
+      </a>
+      <a href="mailto:jx5565@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
+        Email <span class="handle">jx5565@gmail.com</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main>
+    <section class="intro" aria-label="About">
+      <p>I build and evaluate models, with research spanning LLM post-training, generative 3D/audio modeling and adversarial 3D representation learning.</p>
+      <p>Before Google I was a Staff Researcher at Tencent. I received my Ph.D. from the University at Buffalo, advised by Chunming Qiao and Junsong Yuan.</p>
+      <div class="tags">
+        <span class="tag">LLM post-training</span>
+        <span class="tag">Multimodal generation</span>
+        <span class="tag">Audio separation</span>
+        <span class="tag">3D point clouds</span>
+        <span class="tag">Agents &amp; evaluation</span>
+      </div>
+    </section>
+
+    <section id="publications" aria-labelledby="pub-h">
+      <div class="sec-head"><h2 id="pub-h">Publications</h2><span class="count">5 papers</span></div>
+      <ol class="pubs">
+        <li class="pub">
+          <div class="venue"><span class="v">NeurIPS 2025</span></div>
+          <div>
+            <h3><a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/a24a75ef009ee73b160653c16b18f00e-Abstract-Conference.html" target="_blank" rel="noopener">ZeroSep: Separate Anything in Audio with Zero Training</a></h3>
+            <p class="authors">Chao Huang, Yuesheng Ma, <span class="me">Junxuan Huang</span>, Susan Liang, Yunlong Tang, Jing Bi, Wenqiang Liu, Nima Mesgarani, Chenliang Xu</p>
+            <div class="pub-links">
+              <a href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/a24a75ef009ee73b160653c16b18f00e-Abstract-Conference.html" target="_blank" rel="noopener">Paper</a>
+              <a href="https://arxiv.org/abs/2505.23625" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://wikichao.github.io/ZeroSep/" target="_blank" rel="noopener">Project</a>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><span class="v">ACL 2025</span></div>
+          <div>
+            <h3><a href="https://aclanthology.org/2025.acl-long.731/" target="_blank" rel="noopener">Crab: A Novel Configurable Role-Playing LLM with Assessing Benchmark</a></h3>
+            <p class="authors">Kai He, Yucheng Huang, Wenqing Wang, Delong Ran, Dongming Sheng, <span class="me">Junxuan Huang</span>, Qika Lin, Jiaxing Xu, Wenqiang Liu, Mengling Feng</p>
+            <div class="pub-links">
+              <a href="https://aclanthology.org/2025.acl-long.731/" target="_blank" rel="noopener">Paper</a>
+              <a href="https://aclanthology.org/2025.acl-long.731.pdf" target="_blank" rel="noopener">PDF</a>
+              <a href="https://doi.org/10.18653/v1/2025.acl-long.731" target="_blank" rel="noopener">DOI</a>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><span class="v">ICASSP 2023</span><span class="oral">Oral</span></div>
+          <div>
+            <h3><a href="https://arxiv.org/abs/2209.06971" target="_blank" rel="noopener">PointACL: Adversarial Contrastive Learning for Robust Point Clouds Representation under Adversarial Attack</a></h3>
+            <p class="authors"><span class="me">Junxuan Huang</span>, Yatong An, Lu Cheng, Chen Bai, Junsong Yuan, Chunming Qiao</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2209.06971" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2209.06971" target="_blank" rel="noopener">PDF</a>
+              <a href="https://rc.signalprocessingsociety.org/conferences/icassp-2023/spsicassp23vid0122" target="_blank" rel="noopener">Talk</a>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><span class="v">ICASSP 2022</span></div>
+          <div>
+            <h3><a href="https://arxiv.org/abs/2102.07373" target="_blank" rel="noopener">Generation for Adaption: A GAN-Based Approach for Unsupervised Domain Adaption with 3D Point Cloud Data</a></h3>
+            <p class="authors"><span class="me">Junxuan Huang</span>, Junsong Yuan, Chunming Qiao</p>
+            <div class="pub-links">
+              <a href="https://arxiv.org/abs/2102.07373" target="_blank" rel="noopener">arXiv</a>
+              <a href="https://arxiv.org/pdf/2102.07373" target="_blank" rel="noopener">PDF</a>
+            </div>
+          </div>
+        </li>
+        <li class="pub">
+          <div class="venue"><span class="v">CyberC 2016</span></div>
+          <div>
+            <h3><a href="https://doi.org/10.1109/CyberC.2016.76" target="_blank" rel="noopener">Modeling POI Transition Network of Human Mobility</a></h3>
+            <p class="authors">Chao Fan, <span class="me">Junxuan Huang</span>, Dan Yang, Zhihai Rong</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1109/CyberC.2016.76" target="_blank" rel="noopener">DOI</a>
+            </div>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="experience" aria-labelledby="exp-h">
+      <div class="sec-head"><h2 id="exp-h">Experience</h2></div>
+      <ol class="timeline">
+        <li class="item now">
+          <div class="org">Google<span class="badge-now">CURRENT</span></div>
+          <div class="when">Jun 2026 – Present</div>
+          <div class="title">Software Engineer, AI/ML</div>
+          <div class="meta">New York, NY</div>
+        </li>
+        <li class="item">
+          <div class="org">Tencent</div>
+          <div class="when">Jan 2024 – Jun 2026</div>
+          <div class="title">Staff Researcher</div>
+          <div class="meta">Palo Alto, CA</div>
+        </li>
+        <li class="item">
+          <div class="org">Gen Nine</div>
+          <div class="when">Feb 2023 – Sep 2023</div>
+          <div class="title">AI Engineer</div>
+          <div class="meta">Cincinnati, OH</div>
+        </li>
+      </ol>
+    </section>
+
+    <section id="education" aria-labelledby="edu-h">
+      <div class="sec-head"><h2 id="edu-h">Education</h2></div>
+      <ol class="timeline">
+        <li class="item">
+          <div class="org">University at Buffalo, SUNY</div>
+          <div class="when">Aug 2017 – Feb 2023</div>
+          <div class="title">Ph.D. in Computer Science and Engineering</div>
+          <div class="meta">Advised by Chunming Qiao &amp; Junsong Yuan · Buffalo, NY</div>
+        </li>
+        <li class="item">
+          <div class="org">University of Electronic Science and Technology of China</div>
+          <div class="when">Aug 2012 – Jul 2016</div>
+          <div class="title">B.S. in Electronic Science and Engineering</div>
+          <div class="meta">Chengdu, China</div>
+        </li>
+      </ol>
+    </section>
+
+    <footer>© 2026 Junxuan Huang · Last updated November 2026</footer>
+  </main>
+</div>
+</body>
+</html>
