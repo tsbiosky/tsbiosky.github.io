@@ -182,6 +182,36 @@ main { display: flex; flex-direction: column; gap: 56px; min-width: 0; }
 }
 .pub-links a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
 
+/* projects */
+.projects { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.proj {
+  display: flex; flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color .15s, transform .15s;
+}
+.proj:hover { border-color: var(--accent); transform: translateY(-2px); }
+.proj .shot { display: block; position: relative; aspect-ratio: 16 / 9; background: var(--line); overflow: hidden; }
+.proj .shot img { width: 100%; height: 100%; object-fit: cover; display: block; image-rendering: auto; }
+.proj .shot .cap {
+  position: absolute; left: 10px; bottom: 10px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .03em;
+  padding: 3px 8px; border-radius: 6px;
+  background: rgba(10, 14, 16, .72); color: #e8f6f3;
+}
+.proj .body { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px 18px; flex: 1; }
+.proj h3 { margin: 0; font-size: 18px; font-weight: 600; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.proj h3 a { color: var(--ink); }
+.proj h3 a:hover { color: var(--accent); }
+.proj .kind { font-family: var(--font-mono); font-size: 11.5px; font-weight: 400; color: var(--gold); }
+.proj p { margin: 0; font-size: 14.5px; color: var(--muted); line-height: 1.55; }
+.proj .stack { display: flex; flex-wrap: wrap; gap: 6px; }
+.proj .stack span { font-family: var(--font-mono); font-size: 11.5px; color: var(--muted); padding: 1px 7px; border: 1px solid var(--line); border-radius: 5px; }
+.proj .pub-links { margin-top: auto; padding-top: 4px; }
+@media (max-width: 700px) { .projects { grid-template-columns: 1fr; } }
+
 /* timeline */
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }
 .timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 1px; background: var(--line); }
@@ -274,6 +304,43 @@ footer { color: var(--muted); font-size: 13px; padding-top: 24px; border-top: 1p
         <span class="tag">Audio separation</span>
         <span class="tag">3D point clouds</span>
         <span class="tag">Agents &amp; evaluation</span>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="proj-h">
+      <div class="sec-head"><h2 id="proj-h">Projects</h2><span class="count">2 projects</span></div>
+      <div class="projects">
+        <article class="proj">
+          <a class="shot" href="https://game-generation-platform.vercel.app/" target="_blank" rel="noopener">
+            <img src="assets/playrpg_preview.webp" alt="PlayRPG start screen: a neon pixel-art city with a story prompt box" loading="lazy" width="1200" height="675">
+            <span class="cap">story → playable RPG</span>
+          </a>
+          <div class="body">
+            <h3><a href="https://github.com/tsbiosky/PlayRPG" target="_blank" rel="noopener">PlayRPG</a><span class="kind">Game generation</span></h3>
+            <p>Turns a story text into a playable 2D RPG: plot, pixel character sprites, tiled maps with collision, background music and a turn-based battle system.</p>
+            <div class="stack"><span>Gemini</span><span>Phaser 3</span><span>Python</span><span>ElevenLabs</span></div>
+            <div class="pub-links">
+              <a href="https://game-generation-platform.vercel.app/" target="_blank" rel="noopener">Homepage</a>
+              <a href="https://github.com/tsbiosky/PlayRPG" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:13px;height:13px;vertical-align:-2px;margin-right:5px"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+            </div>
+          </div>
+        </article>
+        <article class="proj">
+          <a class="shot" href="https://github.com/WikiChao/ZeroSep" target="_blank" rel="noopener">
+            <img src="assets/zerosep_preview.webp" alt="Spectrogram of the ZeroSep example audio mixture" loading="lazy" width="1200" height="675">
+            <span class="cap">mel spectrogram · example mix</span>
+          </a>
+          <div class="body">
+            <h3><a href="https://github.com/WikiChao/ZeroSep" target="_blank" rel="noopener">ZeroSep</a><span class="kind">NeurIPS 2025</span></h3>
+            <p>Training-free audio source separation. Repurposes pre-trained text-guided audio diffusion models to isolate any sound you describe in words.</p>
+            <div class="stack"><span>AudioLDM</span><span>Tango</span><span>Diffusion inversion</span><span>Gradio</span></div>
+            <div class="pub-links">
+              <a href="https://wikichao.github.io/ZeroSep/" target="_blank" rel="noopener">Project page</a>
+              <a href="https://github.com/WikiChao/ZeroSep" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:13px;height:13px;vertical-align:-2px;margin-right:5px"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
+              <a href="https://arxiv.org/abs/2505.23625" target="_blank" rel="noopener">Paper</a>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
