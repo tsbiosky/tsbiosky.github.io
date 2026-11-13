@@ -195,6 +195,8 @@ main { display: flex; flex-direction: column; gap: 56px; min-width: 0; }
 .proj:hover { border-color: var(--accent); transform: translateY(-2px); }
 .proj .shot { display: block; position: relative; aspect-ratio: 16 / 9; background: var(--line); overflow: hidden; }
 .proj .shot img { width: 100%; height: 100%; object-fit: cover; display: block; image-rendering: auto; }
+.proj .shot.fit { background: #ffffff; }
+.proj .shot.fit img { object-fit: contain; padding: 6px; }
 .proj .shot .cap {
   position: absolute; left: 10px; bottom: 10px;
   font-family: var(--font-mono); font-size: 11px; letter-spacing: .03em;
@@ -326,9 +328,8 @@ footer { color: var(--muted); font-size: 13px; padding-top: 24px; border-top: 1p
           </div>
         </article>
         <article class="proj">
-          <a class="shot" href="https://github.com/WikiChao/ZeroSep" target="_blank" rel="noopener">
-            <img src="assets/zerosep_preview.webp" alt="Spectrogram of the ZeroSep example audio mixture" loading="lazy" width="1200" height="675">
-            <span class="cap">mel spectrogram · example mix</span>
+          <a class="shot fit" href="https://github.com/WikiChao/ZeroSep" target="_blank" rel="noopener">
+            <img src="assets/zerosep_preview.webp" alt="ZeroSep method overview: latent inversion of the mixture, text-guided separation, and the effects of prompts and guidance" loading="lazy">
           </a>
           <div class="body">
             <h3><a href="https://github.com/WikiChao/ZeroSep" target="_blank" rel="noopener">ZeroSep</a><span class="kind">NeurIPS 2025</span></h3>
